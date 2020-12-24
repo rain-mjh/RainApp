@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.rain.rainapp.fragment.FindFragment;
+import com.rain.rainapp.fragment.HomeFragment;
 import com.rain.rainapp.fragment.MyFragment;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
@@ -21,7 +23,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     private FrameLayout ly_content;
 
-    private MyFragment fg1,fg2,fg3;
+    private MyFragment myFragment;
+    private FindFragment findFragment;
+    private HomeFragment homeFragment;
 
     private FragmentManager fManager;
 
@@ -53,14 +57,14 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     }
     //隐藏
     private void hideAllFragment(FragmentTransaction fragmentTransaction){
-        if (fg1!=null){
-            fragmentTransaction.hide(fg1);
+        if (homeFragment!=null){
+            fragmentTransaction.hide(homeFragment);
         }
-        if (fg2!=null){
-            fragmentTransaction.hide(fg2);
+        if (findFragment!=null){
+            fragmentTransaction.hide(findFragment);
         }
-        if (fg3!=null){
-            fragmentTransaction.hide(fg3);
+        if (myFragment!=null){
+            fragmentTransaction.hide(myFragment);
         }
     }
 
@@ -74,34 +78,34 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
               setSelected();
                txt_home.setSelected(true);
                txt_topbar.setText("首页");
-              if(fg1 == null){
-                  fg1 = new MyFragment("第一个Fragment");
-                  fTransaction.add(R.id.ly_content,fg1);
+              if(homeFragment == null){
+                  homeFragment = new HomeFragment("第一个Fragment");
+                  fTransaction.add(R.id.ly_content,homeFragment);
 
               }else{
-                  fTransaction.show(fg1);
+                  fTransaction.show(homeFragment);
               }
               break;
           case R.id.txt_find:
               setSelected();
               txt_find.setSelected(true);
               txt_topbar.setText("发现");
-              if(fg2 == null){
-                  fg2 = new MyFragment("第二个Fragment");
-                  fTransaction.add(R.id.ly_content,fg2);
+              if(findFragment == null){
+                  findFragment = new FindFragment("第二个Fragment");
+                  fTransaction.add(R.id.ly_content,findFragment);
               }else{
-                  fTransaction.show(fg2);
+                  fTransaction.show(findFragment);
               }
               break;
           case R.id.txt_me:
               setSelected();
               txt_me.setSelected(true);
               txt_topbar.setText("我的");
-              if(fg3 == null){
-                  fg3 = new MyFragment("第三个Fragment");
-                  fTransaction.add(R.id.ly_content,fg3);
+              if(myFragment == null){
+                  myFragment = new MyFragment("第三个Fragment");
+                  fTransaction.add(R.id.ly_content,myFragment);
               }else{
-                  fTransaction.show(fg3);
+                  fTransaction.show(myFragment);
               }
               break;
       }
