@@ -2,16 +2,21 @@ package com.rain.rainapp.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.rain.rainapp.R;
 import com.rain.rainapp.common.GlideImageLoader;
+import com.rain.rainapp.fragment.home.LeftFragment;
+import com.rain.rainapp.fragment.home.RightFragment;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -30,6 +35,11 @@ public class HomeFragment  extends Fragment {
     TextView home_left;
     TextView home_right;
 
+    private FragmentManager fManager;
+
+    private LeftFragment leftFragment;
+    private RightFragment rightFragment;
+    private FrameLayout ly_content;
 
 
     public HomeFragment(String content) {
@@ -57,6 +67,8 @@ public class HomeFragment  extends Fragment {
 
         banner();
 
+        fManager=getFragmentManager();
+
         return view;
     }
 
@@ -73,23 +85,52 @@ public class HomeFragment  extends Fragment {
         home_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentTransaction fTransaction = fManager.beginTransaction();
+                hideFragment(fTransaction);
                 setSelected();
                 home_left.setSelected(true);
-                System.out.println("点击1");
+                if (leftFragment==null){
+                    leftFragment=new LeftFragment("归还记录");
+                    fTransaction.add(R.id.home_layout,leftFragment);
+                }else {
+                    fTransaction.show(leftFragment);
+                }
+                fTransaction.commit();
             }
         });
 
         home_right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentTransaction fTransaction = fManager.beginTransaction();
+                hideFragment(fTransaction);
                 setSelected();
                 home_right.setSelected(true);
-                System.out.println("点击2");
+                if (rightFragment==null){
+                    rightFragment=new RightFragment("借出记录");
+
+                    fTransaction.add(R.id.home_layout,rightFragment);
+                }else {
+                    fTransaction.show(rightFragment);
+                }
+                fTransaction.commit();
             }
         });
 
         home_left.performClick();
     }
+
+    //隐藏
+    public void hideFragment(FragmentTransaction fragmentTransaction){
+        if (leftFragment!=null){
+            fragmentTransaction.hide(leftFragment);
+        }
+        if (rightFragment!=null){
+            fragmentTransaction.hide(rightFragment);
+        }
+
+    }
+
 
     /**
      * 顶部轮播图
