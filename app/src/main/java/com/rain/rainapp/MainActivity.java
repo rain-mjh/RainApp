@@ -2,7 +2,6 @@ package com.rain.rainapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -111,4 +110,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
       }
         fTransaction.commit();
     }
+
+
 }

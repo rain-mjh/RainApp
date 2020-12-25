@@ -18,14 +18,14 @@ public class FindFragment extends Fragment {
     String content;
 
     public FindFragment(String content) {
-        this.content=content;
+        this.content = content;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.find_fragment,container,false);
-        TextView textView=view.findViewById(R.id.txt_find);
+        View view = inflater.inflate(R.layout.find_fragment, container, false);
+        TextView textView = view.findViewById(R.id.txt_find);
         textView.setText(content);
         return view;
     }
