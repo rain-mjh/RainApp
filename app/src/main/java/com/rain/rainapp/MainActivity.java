@@ -13,6 +13,8 @@ import com.rain.rainapp.fragment.FindFragment;
 import com.rain.rainapp.fragment.HomeFragment;
 import com.rain.rainapp.fragment.MyFragment;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
 
     private TextView txt_topbar;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     private FragmentManager fManager;
 
+    List<String> listImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         fManager = getFragmentManager();
         initView();
         txt_home.performClick();
+
     }
 
     private void initView() {
@@ -110,6 +114,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
       }
         fTransaction.commit();
     }
+
 
 
 }
