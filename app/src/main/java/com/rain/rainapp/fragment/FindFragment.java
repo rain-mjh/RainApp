@@ -1,6 +1,7 @@
 package com.rain.rainapp.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,11 +41,14 @@ public class FindFragment extends Fragment {
     GoodsAdapter adapter;
 
     ListView listView;
+
     TextView textView;
+
 
     private ProgressDialog progressDialog;
 
     List<GoodsEntity.DataBean> dataBeanList;
+
 
     @SuppressLint("HandlerLeak")
     Handler handler = new Handler() {
@@ -85,7 +90,17 @@ public class FindFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getGoodsList();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                GoodsEntity.DataBean dataBean=dataBeanList.get(i);
+                System.out.println(dataBean.getQrCode());
+            }
+        });
     }
+
+
 
     public void showProgressDialog(String title, String message) {
         if (progressDialog == null) {
