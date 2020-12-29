@@ -27,16 +27,52 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:hint="请输入账号" />
+            android:hint="请输入账号"
+            android:background="@null"/>
+        <View
 
-        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:background="#333"/>
+
+        <RelativeLayout
             android:layout_marginTop="30dp"
-            android:id="@+id/et_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:hint="请输入密码" />
+            android:id="@+id/rl">
+
+            <EditText
+                android:id="@+id/et_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"
+                android:hint="请输入密码"
+                android:layout_marginRight="50dp"
+                android:background="@null"/>
+
+            <ImageView
+                android:id="@+id/img_pwd"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/show_pwd_bg"/>
+
+
+        </RelativeLayout>
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:background="#333"/>
+
 
 
         <TextView

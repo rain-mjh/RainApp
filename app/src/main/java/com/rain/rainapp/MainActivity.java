@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.rain.rainapp.entity.UserInfo;
 import com.rain.rainapp.fragment.FindFragment;
 import com.rain.rainapp.fragment.HomeFragment;
 import com.rain.rainapp.fragment.MyFragment;
@@ -31,6 +33,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     private FragmentManager fManager;
 
+    String code="";
+
+    UserInfo userInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +48,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         SharedPreferences sp=getSharedPreferences("userInfo",MODE_PRIVATE);
         String res=sp.getString("user","");
         if (!res.equals("")){
-
+            System.out.println(res);
+            Gson gson=new Gson();
+            userInfo=gson.fromJson(res,UserInfo.class);
+            code=userInfo.getSuccess().get(0).getvRemarks();
         }
     }
 
@@ -110,7 +118,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
               txt_me.setSelected(true);
               txt_topbar.setText("我的");
               if(myFragment == null){
-                  myFragment = new MyFragment("第三个Fragment");
+                  myFragment = new MyFragment(code);
                   fTransaction.add(R.id.ly_content,myFragment);
               }else{
                   fTransaction.show(myFragment);
