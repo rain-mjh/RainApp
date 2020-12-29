@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
           case R.id.txt_find:
               setSelected();
               txt_find.setSelected(true);
-              txt_topbar.setText("发现");
+              txt_topbar.setText("物品");
               if(findFragment == null){
                   findFragment = new FindFragment("第二个Fragment");
                   fTransaction.add(R.id.ly_content,findFragment);

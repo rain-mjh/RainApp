@@ -9,6 +9,9 @@ public  class   HttpUrl {
     //登录
     public static String loginUrl="/index/index";
 
+    //物品
+    public static String goodsUrl="/type/TypeAll";
+
 
 
     //http://42.194.151.237:8086/YiQiGui/index/index

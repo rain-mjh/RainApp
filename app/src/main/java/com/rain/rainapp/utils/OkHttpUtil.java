@@ -8,6 +8,24 @@ import okhttp3.RequestBody;
 
 public class OkHttpUtil {
 
+    //物品列表
+    public static void goodsList(String host1,String url,String goodsName,String sType, int page, int limit,Callback callback){
+        //1.创建OkHttpClient对象
+        OkHttpClient okHttpClient = new OkHttpClient();
+        //2.通过new FormBody()调用build方法,创建一个RequestBody,可以用add添加键值对
+        RequestBody requestBody = new FormBody.Builder()
+                .add("goodsName", goodsName)
+                .add("sType", sType)
+                .add("page", String.valueOf(page))
+                .add("limit", String.valueOf(limit))
+                .build();
+        //3.创建Request对象，设置URL地址，将RequestBody作为post方法的参数传入
+        Request request = new Request.Builder().url(host1+url).post(requestBody).build();
+        //4.创建一个call对象,参数就是Request请求对象
+        okHttpClient.newCall(request).enqueue(callback);
+    }
+
+
     //登录
     public static void login(String host1,String url,String userName,String password, Callback callback){
         //1.创建OkHttpClient对象
