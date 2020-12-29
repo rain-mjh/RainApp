@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:textSize="26sp"
+            android:textSize="16sp"
             android:textColor="@color/text_topbar"
             android:text="信息"
             android:letterSpacing="0.7"/>

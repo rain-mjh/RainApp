@@ -11,7 +11,7 @@
         android:text="钥匙"
         android:paddingLeft="40dp"
         android:gravity="center_vertical"
-        android:textSize="18sp"
+        android:textSize="12sp"
         android:textColor="#333"/>
 
 </LinearLayout>
