@@ -79,6 +79,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(LoginActivity.this, "输入不能空!", Toast.LENGTH_SHORT).show();
             return;
         }
+        System.out.println("账号："+userName+"密码："+pwd);
+
         OkHttpUtil.login(HttpUrl.host1, HttpUrl.loginUrl, userName, pwd, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

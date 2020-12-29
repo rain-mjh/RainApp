@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     private FragmentManager fManager;
 
-    List<String> listImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         initView();
         txt_home.performClick();
 
+        SharedPreferences sp=getSharedPreferences("userInfo",MODE_PRIVATE);
+        String res=sp.getString("user","");
+        if (!res.equals("")){
+
+        }
     }
 
     private void initView() {
