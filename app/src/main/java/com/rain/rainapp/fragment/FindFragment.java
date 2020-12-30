@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,16 +12,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.gson.Gson;
 import com.rain.rainapp.LoginActivity;
 import com.rain.rainapp.R;
 import com.rain.rainapp.adapter.GoodsAdapter;
+import com.rain.rainapp.common.ZXingUtils;
 import com.rain.rainapp.entity.GoodsEntity;
 import com.rain.rainapp.utils.HttpUrl;
 import com.rain.rainapp.utils.OkHttpUtil;
@@ -45,10 +49,14 @@ public class FindFragment extends Fragment {
     TextView textView;
 
 
+    private ImageView codeImg;
+    private TextView goodsName;
+
     private ProgressDialog progressDialog;
 
     List<GoodsEntity.DataBean> dataBeanList;
 
+    AlertDialog dialog = null;
 
     @SuppressLint("HandlerLeak")
     Handler handler = new Handler() {
@@ -59,7 +67,7 @@ public class FindFragment extends Fragment {
             if (msg.what == 1) {
                 listView.setVisibility(View.VISIBLE);
                 textView.setVisibility(View.GONE);
-                adapter=new GoodsAdapter(getActivity(),dataBeanList);
+                adapter = new GoodsAdapter(getActivity(), dataBeanList);
                 listView.setAdapter(adapter);
             } else if (msg.what == 2) {
                 listView.setVisibility(View.GONE);
@@ -94,12 +102,31 @@ public class FindFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                GoodsEntity.DataBean dataBean=dataBeanList.get(i);
+                GoodsEntity.DataBean dataBean = dataBeanList.get(i);
                 System.out.println(dataBean.getQrCode());
+                dialogTip(dataBean.getQrCode(),dataBean.getGoodsName());
             }
         });
     }
 
+
+    public void dialogTip(String code, String name) {
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+        dialog = new AlertDialog.Builder(getActivity()).create();
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_layout, null);
+        codeImg=view.findViewById(R.id.goods_img);
+        goodsName=view.findViewById(R.id.pro_name);
+        Bitmap bitmap = ZXingUtils.createQRImage(code,500,500);
+        codeImg.setImageBitmap(bitmap);
+        goodsName.setText(name);
+        dialog.setCancelable(true);
+        dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
+        dialog.setView(view);
+        dialog.show();
+
+    }
 
 
     public void showProgressDialog(String title, String message) {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RainApp</string>
+    <string name="app_name">仪器管理</string>
     <string name="tab_menu_alert">首页</string>
     <string name="tab_menu_profile">物品</string>
     <string name="tab_menu_setting">我的</string>
