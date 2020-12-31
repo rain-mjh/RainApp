@@ -2,16 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/goods_name"
-        android:layout_width="match_parent"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:text="钥匙"
-        android:paddingLeft="40dp"
-        android:gravity="center_vertical"
-        android:textSize="12sp"
-        android:textColor="#333"/>
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="物品名称："
+            android:paddingLeft="40dp"
+            android:gravity="center_vertical"
+            android:textSize="12sp"
+            android:textColor="#333"/>
+        <TextView
+            android:id="@+id/goods_name"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="钥匙"
+            android:gravity="center_vertical"
+            android:textSize="12sp"
+            android:textColor="#333"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|left">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="物品类型："
+            android:layout_marginLeft="50dp"
+            android:textSize="12sp"
+            android:textColor="#333"/>
+
+        <TextView
+            android:id="@+id/goods_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="大件"
+            android:textSize="12sp"
+            android:textColor="#333"/>
+    </LinearLayout>
 
 </LinearLayout>

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
@@ -19,7 +20,7 @@ public class WelcomeActivity extends AppCompatActivity {
         initView();
 
         AlphaAnimation anima = new AlphaAnimation(0.3f, 1.0f);
-        anima.setDuration(3000);// 设置动画显示时间
+        anima.setDuration(2000);// 设置动画显示时间
         wel_img.startAnimation(anima);
         anima.setAnimationListener(new AnimationImpl());
 
@@ -27,6 +28,13 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void initView() {
         wel_img=findViewById(R.id.wel_img);
+
+        wel_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                skip();
+            }
+        });
 
     }
     private class AnimationImpl implements Animation.AnimationListener {
@@ -49,7 +57,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void skip() {
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
         finish();
     }
 

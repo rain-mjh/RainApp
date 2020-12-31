@@ -47,16 +47,20 @@ public class GoodsAdapter extends BaseAdapter {
            view=mInflater.inflate(R.layout.goods_item,null);
            viewHolder=new ViewHolder();
            viewHolder.goods_name=view.findViewById(R.id.goods_name);
+           viewHolder.goods_type=view.findViewById(R.id.goods_type);
+
            view.setTag(viewHolder);
         }else {
          viewHolder= (ViewHolder) view.getTag();
         }
         viewHolder.goods_name.setText(dataBean.getGoodsName());
+        viewHolder.goods_type.setText(dataBean.getsType());
         return view;
     }
 
     public class ViewHolder{
         private TextView goods_name;
+        private TextView goods_type;
     }
 
 }
